@@ -1,7 +1,7 @@
 //Look a new js file
 console.log("The js is connected")
 
-var searchEl = $("#search-area");
+var searchEl = $(".container");
 
 
 function initGoogle() {
@@ -34,12 +34,19 @@ getSearchResults();
 
 function handleSearchData (event) {
     event.preventDefault();
-    var searchBtnClicked = $(event.target);
-    var inputField = searchBtnClicked.parent().children()[0].children[0].children[0].value;
+    var inputField = $(".input")[0].value;
     console.log(inputField);
 
-}
+    var familyCheckbox = $("#family")[0].checked;
+    console.log(familyCheckbox);
 
+    var unisexCheckbox = $("#Unisex")[0].checked;
+    console.log(unisexCheckbox);
+
+    var accessibleCheckbox = $("#Accessible")[0].checked;
+    console.log(accessibleCheckbox);
+    
+}
 searchEl.on('click', '.button', handleSearchData)
 
 
