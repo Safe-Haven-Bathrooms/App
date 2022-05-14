@@ -46,6 +46,14 @@ function handleSearchData (event) {
     var accessibleCheckbox = $("#Accessible")[0].checked;
     console.log(accessibleCheckbox);
     
+    //TODO: Add lat and lon values from Google Maps API
+    var refugeRestroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=${accessibleCheckbox}&unisex=${unisexCheckbox}&lat=42.045597&lng=-87.688568`
+    console.log(refugeRestroomsURL);
+
+    fetch(refugeRestroomsURL)
+        .then(response=>response.json())
+        .then(data=>console.log(data))
+
 }
 searchEl.on('click', '.button', handleSearchData)
 
