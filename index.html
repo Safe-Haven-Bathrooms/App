@@ -13,42 +13,36 @@
 </head>
 
 <body>
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="has-text-primary">Search for Bathrooms</h1>
-                <div class="field">
-                    <p class="control has-icons-left has-icons-right">
-                        <input class="input" type="text" style="width: 25%" placeholder="location">
-                        <span class="icon is-small is-left">
-                            <i class="fa-regular fa-location-dot"></i>
-                        </span>
-                    </p>
-                </div>
-                <div>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        Family
-                    </label>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        Unisex
-                    </label>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        Accessible
-                    </label>
-                </div>
-                <div>
-                    <button class="button is-primary">Find Bathrooms</button>
-                </div>
-            </div>
+
+    <div id="search-area">
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+            <input class="input" type="email" placeholder="location">
+            <span class="icon is-small is-left">
+                <i class="fa-solid fa-location-dot"></i>
+            </span>
+            <span class="icon is-small is-right">
+                <i class="fa-solid fa-location-dot"></i>
+            </span>
+            </p>
         </div>
-    </section>
+        <label class="checkbox" id="family">
+            <input type="checkbox">
+            Family
+        </label>
+        <label class="checkbox" id="unisex">
+            <input type="checkbox">
+            Unisex
+        </label>
+        <label class="checkbox" id="accessible">
+            <input type="checkbox">
+            Accessible
+        </label>
+        <button class="button">Find Bathrooms</button>
+    </div>
 
-
-
-                <script src="./assets/js/script.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="./assets/js/script.js"></script> 
 </body>
 
 </html>
