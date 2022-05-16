@@ -110,16 +110,16 @@ function getcityCoord(location) {
 };
 
 
+// Appends Location DIV to the page
+// TODO: call this function when a search is made (right now is called upon the load of the page)
 function appendLocationDiv () {
+    //TODO: Url below is hard coded to specific search criteria; need to have this be the dynamically updated URL
     var restroomsURL = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=true&unisex=false&lat=42.045597&lng=-87.688568'
     fetch(restroomsURL).then(function (response) {
-        console.log(response);
         response.json().then(function (data) {
             console.log(data);
-
-            console.log(data.length)
-
             for (var i = 0; i < data.length; i++) {
+                //List of current data to query
                 var bathroomInfo = {
                     name: data[i].name,
                     distance: data[i].distance,
@@ -130,7 +130,8 @@ function appendLocationDiv () {
                     city: data[i].city,
                     state: data[i].state
                 };
-
+            
+            //Results DIV that gets rendered to the page
             var resultsDiv = $(`
                 <div class="card">
                     <h3>${bathroomInfo.name}</h3>
@@ -142,31 +143,15 @@ function appendLocationDiv () {
                 </div>
             `);
 
-            //Appends the new div to the DOM
+            //Appends the new div underneath Google Maps
              $("#results").append(resultsDiv);
         };
-
-
-            //  var currentCity = $(`
-            //     <div class="card">
-            //         <div class="card-body" id="cityWeatherToday">
-            //             <h2 class="subtitle">
-            //                 ${data.name} ${today} <img src='${iconURL}' alt='${data.weather[0].description}'>
-            //              </h2>
-            //             <p>Temperature: ${data.main.temp} °F</p>
-            //             <p>Humidity: ${data.main.humidity}%</p>
-            //             <p>Wind Speed: ${data.wind.speed} MPH</p>
-            //         </div>
-            //     </div>
-            // `);
-
-            // //Appends the new div to the DOM
-            //  $("#currentCity").append(currentCity);
 
         });
     });
 }
 
+//TODO: Move this call to be upon click
 appendLocationDiv()
 
 // let APIKeyGoogle = "AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
