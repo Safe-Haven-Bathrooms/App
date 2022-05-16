@@ -6,12 +6,22 @@ var searchEl = $(".container");
 
 function initGoogle() {
 
+    var options = {
+        center: {lat: 41.8781, lng: -87.6298},
+        zoom: 10
+    }
+
     if (navigator.geolocation) {
         console.log('geolocation is here!')
 
-        navigator.geolocation.getCurrentPosition(positionCoord)
+        navigator.geolocation.getCurrentPosition((positionCoord), 
     
-    } else {
+    (err) => {
+        console.log("user clicked do not get location");
+        map = new google.maps.Map(document.getElementById("flush"), options);
+    })
+    
+    }else {
         console.log('geolocation not supported)');
         map = new google.maps.Map(document.getElementById("flush"), options);
     }
@@ -28,11 +38,11 @@ function positionCoord (position) {
     map = new google.maps.Map(document.getElementById("flush"), options);
 
 //  map marker
-        var marker = new google.maps.Marker({
-            position: { lat: lat, lng: lng},
-            map: map,
-            // icon:
-        });
+        // var marker = new google.maps.Marker({
+        //     position: { lat: lat, lng: lng},
+        //     map: map,
+        //     // icon:
+        // });
 
 }
 
