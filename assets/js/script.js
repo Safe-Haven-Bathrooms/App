@@ -110,6 +110,63 @@ function getcityCoord(location) {
 };
 
 
+function appendLocationDiv () {
+    var restroomsURL = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=true&unisex=false&lat=42.045597&lng=-87.688568'
+    fetch(restroomsURL).then(function (response) {
+        console.log(response);
+        response.json().then(function (data) {
+            console.log(data);
 
+            console.log(data.length)
+
+            for (var i = 0; i < data.length; i++) {
+                var bathroomInfo = {
+                    name: data[i].name,
+                    distance: data[i].distance,
+                    accessible: data[i].accessible,
+                    unisex: data[i].unisex,
+                    changingTable: data[i].changing_table,
+                    street: data[i].street,
+                    city: data[i].city,
+                    state: data[i].state
+                };
+
+            var resultsDiv = $(`
+                <div class="card">
+                    <h3>${bathroomInfo.name}</h3>
+                    <li>Distance: ${bathroomInfo.distance}</li>
+                    <li>Accessible: ${bathroomInfo.accessible}</li>
+                    <li>Unisex: ${bathroomInfo.unisex}</li>
+                    <li>Has a changing table: ${bathroomInfo.changingTable}</li>
+                    <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state}</li>
+                </div>
+            `);
+
+            //Appends the new div to the DOM
+             $("#results").append(resultsDiv);
+        };
+
+
+            //  var currentCity = $(`
+            //     <div class="card">
+            //         <div class="card-body" id="cityWeatherToday">
+            //             <h2 class="subtitle">
+            //                 ${data.name} ${today} <img src='${iconURL}' alt='${data.weather[0].description}'>
+            //              </h2>
+            //             <p>Temperature: ${data.main.temp} °F</p>
+            //             <p>Humidity: ${data.main.humidity}%</p>
+            //             <p>Wind Speed: ${data.wind.speed} MPH</p>
+            //         </div>
+            //     </div>
+            // `);
+
+            // //Appends the new div to the DOM
+            //  $("#currentCity").append(currentCity);
+
+        });
+    });
+}
+
+appendLocationDiv()
 
 // let APIKeyGoogle = "AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
