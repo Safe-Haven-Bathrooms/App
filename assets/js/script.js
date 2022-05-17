@@ -129,7 +129,7 @@ function getcityCoord(location) {
                 });
                 appendLocationDiv(googleLat, googleLon);
             });
-            appendLocationDiv(googleLat, googleLon);
+            // appendLocationDiv(googleLat, googleLon);
         });
 };
 
@@ -158,18 +158,52 @@ function appendLocationDiv(googleLat, googleLon) {
                     changingTable: data[i].changing_table,
                     street: data[i].street,
                     city: data[i].city,
-                    state: data[i].state
+                    state: data[i].state,
+                    directions: data[i].directions,
+                    comment: data[i].comment
                 };
+            
+            //Names changing table result rendered to page
+            var changingTableValue = bathroomInfo.changingTable;
+            console.log(changingTableValue);
+            if (changingTableValue === true) {
+                changingTableValue = "Yes"
+            } else {
+                changingTableValue = "No"
+            }
 
-                //Results DIV that gets rendered to the page
-                var resultsDiv = $(`
+            //Converts distance value to display 2 decimal places only
+            var distanceValue = bathroomInfo.distance;
+            distanceValue = distanceValue.toFixed(2);
+
+            
+            //Names accessible result rendered to page
+            var accessibleValue = bathroomInfo.accessible;
+            if (accessibleValue === true) {
+                accessibleValue = "Yes"
+            } else {
+                accessibleValue = "No"
+            }
+
+            var unisexValue = bathroomInfo.unisex;
+            if (unisexValue === true) {
+                unisexValue = "Yes"
+            } else {
+                unisexValue = "No"
+            }
+
+
+            //Results DIV that gets rendered to the page
+            var resultsDiv = $(`
                 <div class="card">
                     <h3>${bathroomInfo.name}</h3>
-                    <li>Distance: ${bathroomInfo.distance}</li>
-                    <li>Accessible: ${bathroomInfo.accessible}</li>
-                    <li>Unisex: ${bathroomInfo.unisex}</li>
-                    <li>Has a changing table: ${bathroomInfo.changingTable}</li>
-                    <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state}</li>
+                        <li>Distance: ${distanceValue} miles from you</li>
+                        <li>Accessible: ${accessibleValue}</li>
+                        <li>Unisex: ${unisexValue}</li>
+                        <li>Changing Table: ${changingTableValue}</li>
+                        <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state}</li>
+                        <li>Directions:  ${bathroomInfo.directions}</li>
+                        <li>Comments: ${bathroomInfo.comment}</li>
                 </div>
             `);
 
@@ -179,7 +213,7 @@ function appendLocationDiv(googleLat, googleLon) {
             };
 
             
-        };
+        });
 
 
         });
@@ -188,8 +222,8 @@ function appendLocationDiv(googleLat, googleLon) {
 
 searchEl.on('click', '.button', handleSearchData)
 
-//TODO: Move this call to be upon click
-appendLocationDiv()
+// //TODO: Move this call to be upon click
+// appendLocationDiv()
 
 // let APIKeyGoogle = "AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
 
