@@ -92,6 +92,8 @@ function handleSearchData(event) {
 
 
 function getcityCoord(location) {
+    console.log("this is my location " + location);
+
 
 
     console.log("this is my location " + location);
@@ -99,6 +101,8 @@ function getcityCoord(location) {
 
     var googleURL = `https://maps.googleapis.com/maps/api/geocode/json?address=` + location + `&key=AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI`
     console.log("this is the URL " + googleURL);
+
+
 
     fetch(googleURL)
         .then(function (response) {
@@ -113,7 +117,10 @@ function getcityCoord(location) {
             var googleLon = data.results[0].geometry.location.lng;
             console.log(googleLon);
             var getCoord = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=true&unisex=false&lat=` + googleLat + `&lng=` + googleLon;
+
             console.log("this is the URL " + getCoord);
+
+
 
             fetch(getCoord).then(function (response) {
                 console.log(response);
@@ -122,6 +129,7 @@ function getcityCoord(location) {
                 });
                 appendLocationDiv(googleLat, googleLon);
             });
+            appendLocationDiv(googleLat, googleLon);
         });
 };
 
@@ -130,9 +138,14 @@ function getcityCoord(location) {
 
 function appendLocationDiv(googleLat, googleLon) {
 
+
     var restroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=true&unisex=false&lat=` + googleLat + `&lng=` + googleLon;
     console.log("this is restrooms");
     fetch(restroomsURL).then(function (response) {
+
+    
+   
+
         response.json().then(function (data) {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
@@ -160,17 +173,27 @@ function appendLocationDiv(googleLat, googleLon) {
                 </div>
             `);
 
+
                 //Appends the new div underneath Google Maps
                 $("#results").append(resultsDiv);
             };
 
+            
+        };
+
+
         });
-    });
-}
+    };
+
+
+searchEl.on('click', '.button', handleSearchData)
 
 //TODO: Move this call to be upon click
 appendLocationDiv()
 
 // let APIKeyGoogle = "AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
 
-searchEl.on('click', '.button', handleSearchData);
+
+
+
+
