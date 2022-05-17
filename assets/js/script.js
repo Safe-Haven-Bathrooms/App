@@ -88,13 +88,14 @@ function handleSearchData(event) {
         .then(response => response.json())
         .then(data => console.log(data))
 };
-searchEl.on('click', '.button', handleSearchData)
+
 
 
 function getcityCoord(location) {
+    console.log("this is my location " + location);
 
     var googleURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
-
+    onsole.log("this is the URL " + googleURL);
 
     fetch(googleURL)
         .then(function (response) {
@@ -107,25 +108,26 @@ function getcityCoord(location) {
             var googleLat = data.results[0].geometry.location.lat;
             console.log(googleLat);
             var googleLon = data.results[0].geometry.location.lng;
-            console.log(googleLon)
-            var getCoord = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=true&unisex=false&lat=' + googleLat + '&lng=' + googleLon
+            console.log(googleLon);
+            var getCoord = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=true&unisex=false&lat=` + googleLat + `&lng=` + googleLon;
 
             fetch(getCoord).then(function (response) {
-                console.log(response)
+                console.log(response);
                 response.json().then(function (data) {
                     console.log(data);
                 });
             });
+            appendLocationDiv(googleLat, googleLon);
         });
 };
 
 
 // Appends Location DIV to the page
-// TODO: call this function when a search is made (right now is called upon the load of the page)
-function appendLocationDiv () {
-    //TODO: Url below is hard coded to specific search criteria; need to have this be the dynamically updated URL
-    var restroomsURL = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=true&unisex=false&lat=42.045597&lng=-87.688568'
-    fetch(restroomsURL).then(function (response) {
+
+function appendLocationDiv(googleLat, googleLon) {
+    
+    var restroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=true&unisex=false&lat=` + googleLat + `&lng=` + googleLon;
+    console.log("this is restrooms");
         response.json().then(function (data) {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
@@ -154,14 +156,17 @@ function appendLocationDiv () {
             `);
 
             //Appends the new div underneath Google Maps
-             $("#results").append(resultsDiv);
+            $("#results").append(resultsDiv);
         };
 
         });
-    });
-}
+    };
+
+
+searchEl.on('click', '.button', handleSearchData)
 
 //TODO: Move this call to be upon click
 appendLocationDiv()
 
 // let APIKeyGoogle = "AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
+
