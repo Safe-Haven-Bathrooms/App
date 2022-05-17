@@ -1,5 +1,4 @@
 //Look a new js file
-console.log("The js is connected")
 
 var searchEl = $(".container");
 
@@ -14,12 +13,10 @@ function initGoogle() {
     if (navigator.geolocation) {
         console.log('geolocation is here!')
 
-        navigator.geolocation.getCurrentPosition((positionCoord),
-
-            (err) => {
+        navigator.geolocation.getCurrentPosition((positionCoord), (err) => {
                 console.log("user clicked do not get location");
                 map = new google.maps.Map(document.getElementById("flush"), options);
-            })
+            });
 
     } else {
         console.log('geolocation not supported)');
@@ -44,22 +41,7 @@ function positionCoord(position) {
     //     // icon:
     // });
 
-}
-
-
-
-function getSearchResults() {
-
-    var ada = true;
-    var unisex = true;
-    var lat = 42.045597;
-    var lng = -87.688568;
-
-    var refugeRestroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=${ada}&unisex=${unisex}&lat=${lat}&lng=${lng}`
-    console.log(refugeRestroomsURL)
-}
-
-getSearchResults();
+};
 
 
 function handleSearchData(event) {
@@ -67,42 +49,25 @@ function handleSearchData(event) {
     var inputField = $(".input")[0].value;
     console.log(inputField);
 
-    var familyCheckbox = $("#family")[0].checked;
-    console.log(familyCheckbox);
+    var family = $("#family")[0].checked;
+    console.log(family);
 
-    var unisexCheckbox = $("#Unisex")[0].checked;
-    console.log(unisexCheckbox);
+    var unisex = $("#Unisex")[0].checked;
+    console.log(unisex);
 
-    var accessibleCheckbox = $("#Accessible")[0].checked;
-    console.log(accessibleCheckbox);
+    var accessible = $("#Accessible")[0].checked;
+    console.log(accessible);
 
     if (inputField) {
-        getcityCoord(inputField);
+        getcityCoord(inputField, unisex, accessible);
     }
-
-    //TODO: Add lat and lon values from Google Maps API
-    var refugeRestroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=${accessibleCheckbox}&unisex=${unisexCheckbox}&lat=42.045597&lng=-87.688568`
-    console.log(refugeRestroomsURL);
-
-    fetch(refugeRestroomsURL)
-        .then(response => response.json())
-        .then(data => console.log(data))
 };
 
 
 
-function getcityCoord(location) {
-    console.log("this is my location " + location);
-
-
-
-    console.log("this is my location " + location);
-
+function getcityCoord(location, unisex, accessible) {
 
     var googleURL = `https://maps.googleapis.com/maps/api/geocode/json?address=` + location + `&key=AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI`
-    console.log("this is the URL " + googleURL);
-
-
 
     fetch(googleURL)
         .then(function (response) {
@@ -116,36 +81,18 @@ function getcityCoord(location) {
             console.log(googleLat);
             var googleLon = data.results[0].geometry.location.lng;
             console.log(googleLon);
-            var getCoord = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=true&unisex=false&lat=` + googleLat + `&lng=` + googleLon;
-
-            console.log("this is the URL " + getCoord);
-
-
-
-            fetch(getCoord).then(function (response) {
-                console.log(response);
-                response.json().then(function (data) {
-                    console.log(data);
-                });
-                appendLocationDiv(googleLat, googleLon);
-            });
-            // appendLocationDiv(googleLat, googleLon);
+                appendLocationDiv(googleLat, googleLon, unisex, accessible);
         });
 };
 
 
 // Appends Location DIV to the page
 
-function appendLocationDiv(googleLat, googleLon) {
+function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
 
-
-    var restroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=true&unisex=false&lat=` + googleLat + `&lng=` + googleLon;
+    var restroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=${accessible}&unisex=${unisex}&lat=${googleLat}&lng=${googleLon}`;
     console.log("this is restrooms");
     fetch(restroomsURL).then(function (response) {
-
-    
-   
-
         response.json().then(function (data) {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
@@ -207,14 +154,10 @@ function appendLocationDiv(googleLat, googleLon) {
                 </div>
             `);
 
-
-                //Appends the new div underneath Google Maps
+            //Appends the new div underneath Google Maps
                 $("#results").append(resultsDiv);
-            };
-
-            
+            };  
         });
-
 
         });
     };
