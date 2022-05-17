@@ -7,42 +7,42 @@ var searchEl = $(".container");
 function initGoogle() {
 
     var options = {
-        center: {lat: 41.8781, lng: -87.6298},
+        center: { lat: 41.8781, lng: -87.6298 },
         zoom: 10
     }
 
     if (navigator.geolocation) {
         console.log('geolocation is here!')
 
-        navigator.geolocation.getCurrentPosition((positionCoord), 
-    
-    (err) => {
-        console.log("user clicked do not get location");
-        map = new google.maps.Map(document.getElementById("flush"), options);
-    })
-    
-    }else {
+        navigator.geolocation.getCurrentPosition((positionCoord),
+
+            (err) => {
+                console.log("user clicked do not get location");
+                map = new google.maps.Map(document.getElementById("flush"), options);
+            })
+
+    } else {
         console.log('geolocation not supported)');
         map = new google.maps.Map(document.getElementById("flush"), options);
     }
 };
 
 
-function positionCoord (position) {
+function positionCoord(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
-    var options = {center: {lat: lat, lng: lng }, zoom: 8}
+    var options = { center: { lat: lat, lng: lng }, zoom: 8 }
     console.log(lat)
     console.log(lng)
 
     map = new google.maps.Map(document.getElementById("flush"), options);
 
-//  map marker
-        // var marker = new google.maps.Marker({
-        //     position: { lat: lat, lng: lng},
-        //     map: map,
-        //     // icon:
-        // });
+    //  map marker
+    // var marker = new google.maps.Marker({
+    //     position: { lat: lat, lng: lng},
+    //     map: map,
+    //     // icon:
+    // });
 
 }
 
@@ -88,13 +88,17 @@ function handleSearchData(event) {
         .then(response => response.json())
         .then(data => console.log(data))
 };
-searchEl.on('click', '.button', handleSearchData)
+
 
 
 function getcityCoord(location) {
 
-    var googleURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
 
+    console.log("this is my location " + location);
+
+
+    var googleURL = `https://maps.googleapis.com/maps/api/geocode/json?address=` + location + `&key=AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI`
+    console.log("this is the URL " + googleURL);
 
     fetch(googleURL)
         .then(function (response) {
@@ -107,24 +111,27 @@ function getcityCoord(location) {
             var googleLat = data.results[0].geometry.location.lat;
             console.log(googleLat);
             var googleLon = data.results[0].geometry.location.lng;
-            console.log(googleLon)
-            var getCoord = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=true&unisex=false&lat=' + googleLat + '&lng=' + googleLon
+            console.log(googleLon);
+            var getCoord = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=true&unisex=false&lat=` + googleLat + `&lng=` + googleLon;
+            console.log("this is the URL " + getCoord);
 
             fetch(getCoord).then(function (response) {
-                console.log(response)
+                console.log(response);
                 response.json().then(function (data) {
                     console.log(data);
                 });
+                appendLocationDiv(googleLat, googleLon);
             });
         });
 };
 
 
 // Appends Location DIV to the page
-// TODO: call this function when a search is made (right now is called upon the load of the page)
-function appendLocationDiv () {
-    //TODO: Url below is hard coded to specific search criteria; need to have this be the dynamically updated URL
-    var restroomsURL = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=true&unisex=false&lat=42.045597&lng=-87.688568'
+
+function appendLocationDiv(googleLat, googleLon) {
+
+    var restroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=true&unisex=false&lat=` + googleLat + `&lng=` + googleLon;
+    console.log("this is restrooms");
     fetch(restroomsURL).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
@@ -140,9 +147,9 @@ function appendLocationDiv () {
                     city: data[i].city,
                     state: data[i].state
                 };
-            
-            //Results DIV that gets rendered to the page
-            var resultsDiv = $(`
+
+                //Results DIV that gets rendered to the page
+                var resultsDiv = $(`
                 <div class="card">
                     <h3>${bathroomInfo.name}</h3>
                     <li>Distance: ${bathroomInfo.distance}</li>
@@ -153,9 +160,9 @@ function appendLocationDiv () {
                 </div>
             `);
 
-            //Appends the new div underneath Google Maps
-             $("#results").append(resultsDiv);
-        };
+                //Appends the new div underneath Google Maps
+                $("#results").append(resultsDiv);
+            };
 
         });
     });
@@ -165,3 +172,5 @@ function appendLocationDiv () {
 appendLocationDiv()
 
 // let APIKeyGoogle = "AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
+
+searchEl.on('click', '.button', handleSearchData);
