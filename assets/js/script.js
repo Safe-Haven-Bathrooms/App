@@ -1,7 +1,8 @@
 var searchEl = $(".container");
 var resultsEl = $("#results")
 var bathroomsArray = [];
-var searchBtn = $("#searchButton")
+
+
 
 function initGoogle() {
 
@@ -61,13 +62,14 @@ function handleSearchData(event) {
         $(".input").val('');
     }
 
-    // geocodeCity();
+    geocodeCity(inputField);
 };
 
-function geocodeCity() {
+// function that takes input value and renders location on the map
+function geocodeCity(inputField) {
 
     var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: $(".input").val()}, function(results, status) {
+    geocoder.geocode({ address: inputField}, function(results, status) {
         if (status === 'OK') {
             if ({results}) {
                 map.setCenter(results[0].geometry.location);
@@ -76,7 +78,7 @@ function geocodeCity() {
 })
 };
 
-
+// Gets the latitude and longitde of the inputfield
 function getcityCoord(location, unisex, accessible) {
 
     var googleURL = `https://maps.googleapis.com/maps/api/geocode/json?address=` + location + `&key=AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI`
@@ -234,7 +236,10 @@ getLocalStorage();
 resultsEl.on('click', '.button', handleFavoriteButton)
 
 //Click event listenr for storage data
-searchEl.on('click', '.button', handleSearchData, geocodeCity)
+searchEl.on('click', '.button', handleSearchData)
+
+
+
 
 
 
