@@ -147,14 +147,16 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
             `)
 
             resultsDiv.append(`
-                <h3>${bathroomInfo.name}</h3>
-                <li>Distance: ${distanceValue} miles from you</li>
-                <li>Accessible: ${accessibleValue}</li>
-                <li>Unisex: ${unisexValue}</li>
-                <li>Changing Table: ${changingTableValue}</li>
-                <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state}</li>
-                <li>Directions:  ${bathroomInfo.directions}</li>
-                <li>Comments: ${bathroomInfo.comment}</li>
+                <div class="bathroomDiv">
+                    <h3>${bathroomInfo.name}</h3>
+                    <li>Distance: ${distanceValue} miles from you</li>
+                    <li>Accessible: ${accessibleValue}</li>
+                    <li>Unisex: ${unisexValue}</li>
+                    <li>Changing Table: ${changingTableValue}</li>
+                    <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state}</li>
+                    <li>Directions:  ${bathroomInfo.directions}</li>
+                    <li>Comments: ${bathroomInfo.comment}</li>
+                </div>
             `);
             };  
         });
