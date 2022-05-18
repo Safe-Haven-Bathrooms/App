@@ -2,6 +2,7 @@
 
 var searchEl = $(".container");
 var resultsEl = $("#results")
+var bathroomsArray = [];
 
 function initGoogle() {
 
@@ -174,36 +175,47 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
         });
     };
 
+//Gets bathrooms array from local storage
+function getLocalStorage() {
+    //Parses value from stored bathrooms array
+    var storedBathrooms = JSON.parse(localStorage.getItem("bathrooms"));
+
+    if (storedBathrooms !== null) {
+    //If the locally stored array isn't empty, update the existing array to those contents
+    bathroomsArray = storedBathrooms;
+    console.log("The locally stored bathrooms array isn't empty (value below):")
+    console.log(bathroomsArray);
+    } else {
+        console.log("The locally stored bathrooms array is empty.")
+    }
+}
+
+//Pushes favorite button data to stored bathrooms array
 function handleFavoriteButton(event) {
     event.preventDefault();
 
-    //Identifies exact button clicked
+    //Identifies favorite button clicked
     var favoritebtnClicked = $(event.target);
 
     //Traverses the DOM to find input value relative to the clicked button
-    var currentInput = favoritebtnClicked.parent()[0];
+    currentInput = favoritebtnClicked.parent()[0];
 
-    console.log("Favorite button clicked");
-    console.log(currentInput);
+    //Pushes innerHTML value of the input into the bathrooms array
+    bathroomsArray.push(currentInput.innerHTML);
 
-    var currentInputId = favoritebtnClicked.parent()[0].id
-    console.log(currentInputId);
-
-    localStorage.setItem(currentInputId, currentInput.innerHTML)
+    //Stringifys the bathrooms Array and stores the updated array to local storage
+    localStorage.setItem("bathrooms", JSON.stringify(bathroomsArray))
 
 }
+
+//Gets current bathroom Array, called upon page load
+getLocalStorage();
 
 //Click event listener for Favorite button local storage
 resultsEl.on('click', '.button', handleFavoriteButton)
 
 //Click event listenr for storage data
 searchEl.on('click', '.button', handleSearchData)
-
-// //TODO: Move this call to be upon click
-// appendLocationDiv()
-
-// let APIKeyGoogle = "AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI"
-
 
 
 
