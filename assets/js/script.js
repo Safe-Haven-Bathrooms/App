@@ -1,6 +1,7 @@
 var searchEl = $(".container");
 var resultsEl = $("#results")
 var bathroomsArray = [];
+var searchBtn = $("#searchButton")
 
 function initGoogle() {
 
@@ -56,9 +57,24 @@ function handleSearchData(event) {
 
     if (inputField) {
         getcityCoord(inputField, unisex, accessible);
+
+        $(".input").val('');
     }
+
+    // geocodeCity();
 };
 
+function geocodeCity() {
+
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: $(".input").val()}, function(results, status) {
+        if (status === 'OK') {
+            if ({results}) {
+                map.setCenter(results[0].geometry.location);
+        }
+    }
+})
+};
 
 
 function getcityCoord(location, unisex, accessible) {
@@ -103,9 +119,23 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                     state: data[i].state,
                     directions: data[i].directions,
                     comment: data[i].comment,
-                    id: data[i].id
+                    id: data[i].id,
+                    lat: JSON.parse(data[i].latitude),
+                    lng: JSON.parse(data[i].longitude)
                     
                 };
+
+
+
+
+            // map marker
+            // var bathrromMarker = new google.maps.Marker({
+            // position: {
+            //     lat: bathroomInfo.lat,
+            //     Lng: bathroomInfo.lng
+            // },
+            // map: map,
+            // });
             
             //Names changing table result rendered to page
             var changingTableValue = bathroomInfo.changingTable;
@@ -204,7 +234,11 @@ getLocalStorage();
 resultsEl.on('click', '.button', handleFavoriteButton)
 
 //Click event listenr for storage data
-searchEl.on('click', '.button', handleSearchData)
+searchEl.on('click', '.button', handleSearchData, geocodeCity)
+
+
+
+
 
 
 
