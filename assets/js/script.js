@@ -1,5 +1,3 @@
-//Look a new js file
-
 var searchEl = $(".container");
 var resultsEl = $("#results")
 var bathroomsArray = [];
@@ -48,20 +46,13 @@ function positionCoord(position) {
 };
 
 
-
+//Function that evaluates input critera and checkbox criteria
 function handleSearchData(event) {
     event.preventDefault();
+
     var inputField = $(".input")[0].value;
-    console.log(inputField);
-
-    var family = $("#family")[0].checked;
-    console.log(family);
-
     var unisex = $("#Unisex")[0].checked;
-    console.log(unisex);
-
     var accessible = $("#Accessible")[0].checked;
-    console.log(accessible);
 
     if (inputField) {
         getcityCoord(inputField, unisex, accessible);
@@ -96,7 +87,6 @@ function getcityCoord(location, unisex, accessible) {
 function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
 
     var restroomsURL = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=5&offset=0&ada=${accessible}&unisex=${unisex}&lat=${googleLat}&lng=${googleLon}`;
-    console.log("this is restrooms");
     fetch(restroomsURL).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
@@ -166,9 +156,6 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                 <li>Directions:  ${bathroomInfo.directions}</li>
                 <li>Comments: ${bathroomInfo.comment}</li>
             `);
-
-            // //Appends the new div underneath Google Maps
-            //     $("#results").append(resultsDiv);
             };  
         });
 
