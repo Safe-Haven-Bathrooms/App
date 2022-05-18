@@ -3,7 +3,6 @@
 var searchEl = $(".container");
 var resultsEl = $("#results")
 
-
 function initGoogle() {
 
     var options = {
@@ -29,20 +28,24 @@ function initGoogle() {
 function positionCoord(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
-    var options = { center: { lat: lat, lng: lng }, zoom: 8 }
+    var coords = { lat: lat, lng: lng };
     console.log(lat)
     console.log(lng)
 
-    map = new google.maps.Map(document.getElementById("flush"), options);
+    map = new google.maps.Map(document.getElementById("flush"), {
+        zoom:15,
+        center:coords
+    });
 
     //  map marker
-    // var marker = new google.maps.Marker({
-    //     position: { lat: lat, lng: lng},
-    //     map: map,
-    //     // icon:
-    // });
+    var marker = new google.maps.Marker({
+        position: coords,
+        map: map,
+        title: "You Are Here",
+    });
 
 };
+
 
 
 function handleSearchData(event) {
