@@ -1,6 +1,7 @@
 //Look a new js file
 
 var searchEl = $(".container");
+var resultsEl = $("#results")
 
 
 function initGoogle() {
@@ -107,7 +108,9 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                     city: data[i].city,
                     state: data[i].state,
                     directions: data[i].directions,
-                    comment: data[i].comment
+                    comment: data[i].comment,
+                    id: data[i].id
+                    
                 };
             
             //Names changing table result rendered to page
@@ -140,29 +143,57 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
             }
 
 
-            //Results DIV that gets rendered to the page
-            var resultsDiv = $(`
-                <div class="card">
-                    <h3>${bathroomInfo.name}</h3>
-                        <li>Distance: ${distanceValue} miles from you</li>
-                        <li>Accessible: ${accessibleValue}</li>
-                        <li>Unisex: ${unisexValue}</li>
-                        <li>Changing Table: ${changingTableValue}</li>
-                        <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state}</li>
-                        <li>Directions:  ${bathroomInfo.directions}</li>
-                        <li>Comments: ${bathroomInfo.comment}</li>
-                </div>
+            //Results DIV with ID
+            var resultsDiv = jQuery('<div>', {
+                id: bathroomInfo.id,
+                class: 'card'
+            }).appendTo('#results');
+
+            resultsDiv.append(`<button type="button" class="button">Favorite</button>
+            `)
+
+            resultsDiv.append(`
+                <h3>${bathroomInfo.name}</h3>
+                <li>Distance: ${distanceValue} miles from you</li>
+                <li>Accessible: ${accessibleValue}</li>
+                <li>Unisex: ${unisexValue}</li>
+                <li>Changing Table: ${changingTableValue}</li>
+                <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state}</li>
+                <li>Directions:  ${bathroomInfo.directions}</li>
+                <li>Comments: ${bathroomInfo.comment}</li>
             `);
 
-            //Appends the new div underneath Google Maps
-                $("#results").append(resultsDiv);
+            // //Appends the new div underneath Google Maps
+            //     $("#results").append(resultsDiv);
             };  
         });
 
         });
     };
 
+function handleFavoriteButton(event) {
+    event.preventDefault();
 
+    //Identifies exact button clicked
+    var favoritebtnClicked = $(event.target);
+
+    //Traverses the DOM to find input value relative to the clicked button
+    var currentInput = favoritebtnClicked.parent()[0];
+
+    console.log("Favorite button clicked");
+    console.log(currentInput);
+
+    var currentInputId = favoritebtnClicked.parent()[0].id
+    console.log(currentInputId);
+
+    localStorage.setItem(currentInputId, currentInput.innerHTML)
+
+}
+
+//Click event listener for Favorite button local storage
+resultsEl.on('click', '.button', handleFavoriteButton)
+
+//Click event listenr for storage data
 searchEl.on('click', '.button', handleSearchData)
 
 // //TODO: Move this call to be upon click
