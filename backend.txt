@@ -1,0 +1,27 @@
+     <li>Directions:  ${bathroomInfo.directions}</li>
+                    <li>Comments: ${bathroomInfo.comment}</li>
+
+    
+
+
+               resultsDiv.append(`
+                <div class="bathroomDiv" id="${[i]}">
+                    <h3>${bathroomInfo.name}</h3>
+                    <li>Distance: ${distanceValue} miles from you</li>
+                    <li>Accessible: ${accessibleValue}</li>
+                    <li>Unisex: ${unisexValue}</li>
+                    <li>Changing Table: ${changingTableValue}</li>
+                    <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state}</li>
+                </div>
+            `);
+            
+            if (bathroomInfo.directions === null || bathroomInfo.directions === '') {
+            } else {
+                $(`#${[i]}`).append(`<li>Directions: ${bathroomInfo.directions} </li>`)
+
+            }
+            if (bathroomInfo.comment === null || bathroomInfo.comment === '') {
+            } else {
+                $(`#${[i]}`).append(`<li>Comment: ${bathroomInfo.comment} </li>`)
+
+            }
