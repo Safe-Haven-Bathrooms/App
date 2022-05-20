@@ -234,7 +234,8 @@ getLocalStorage();
 resultsEl.on('click', '.button', handleFavoriteButton)
 
 //Click event listenr for storage data
-searchEl.on('click', '.button', handleSearchData, geocodeCity)
+// searchEl.on('click', '.button', handleSearchData, geocodeCity)
+searchBtn.on('click', handleSearchData)
 
 
 
