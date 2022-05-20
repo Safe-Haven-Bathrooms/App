@@ -126,34 +126,27 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                     lng: JSON.parse(data[i].longitude),
                 };
 
+            
                 // // Bathroom Marker
-                // var bathroomMarker = new google.maps.Marker({
-                //     position: {
-                //         lat: bathroomInfo.lat,
-                //         lng: bathroomInfo.lng,
-                //     },
-                //     // label: labels[labelIndex++ % labels.length],
-                //     map: map,
-                //     title: data[i].name
-                // });
+                var bathroomMarker = new google.maps.Marker({
+                    position: {
+                        lat: bathroomInfo.lat,
+                        lng: bathroomInfo.lng,
+                    },
+                    // label: labels[labelIndex++ % labels.length],
+                    map: map,
+                    title: data[i].name
+                });
 
-                // var infowindow = new google.maps.InfoWindow({
-                //     content: "bathroomInfo"
-                // });
+                var infowindow = new google.maps.InfoWindow({
+                    content: data[i].name
+                });
 
-                // google.maps.event.addListener(bathroomMarker, 'click', function () {
-                //     infowindow.open(map, bathroomMarker);
-                // });
+                google.maps.event.addListener(bathroomMarker, 'click', function () {
+                    infowindow.open(map, bathroomMarker);
+                });
+            
 
-
-                // map marker
-                // var bathrromMarker = new google.maps.Marker({
-                // position: {
-                //     lat: bathroomInfo.lat,
-                //     Lng: bathroomInfo.lng
-                // },
-                // map: map,
-                // });
 
                 //Names changing table result rendered to page
                 var changingTableValue = bathroomInfo.changingTable;
@@ -218,6 +211,32 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                     $(`#${[i]}`).append(`<li>Comment: ${bathroomInfo.comment} </li>`);
                 }
             }
+
+            // for (var i = 0; i < data.length; i++) {
+            //     var lat = JSON.parse(data[i].latitude);
+            //     var lng = JSON.parse(data[i].longitude);
+            //     var name = data[i].name;
+
+            //     var bathroomMarker = new google.maps.Marker({
+            //         position: {
+                        
+            //             lat: bathroomInfo.lat,
+            //             lng: bathroomInfo.lng,
+            //         },
+            //         // label: labels[labelIndex++ % labels.length],
+            //         map: map,
+            //         title: data[i].name
+            //     });
+
+            //     var infowindow = new google.maps.InfoWindow({
+            //         content: "bathroomInfo"
+            //     });
+
+            //     google.maps.event.addListener(bathroomMarker, 'click', function () {
+            //         infowindow.open(map, bathroomMarker);
+            //     });
+
+            // }
         });
     });
 }
