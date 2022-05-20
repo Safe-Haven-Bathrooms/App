@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
@@ -14,11 +15,63 @@
 </head>
 
 <body>
+=======
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+        <script>
+            tailwind.config = {
+              theme: {
+                extend: {
+                    animation: {
+        blob: "blob 9s infinite",
+      },
+      keyframes: {
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "30%": {
+            transform: "translate(30px, 50px) scale(1.1)",
+          },
+          "80%": {
+            transform: "translate(-20px, 70px) scale(0.9)",
+          },
+          "100%": {
+            transform: "tranlate(0px, 0px) scale(1)",
+          },
+        },
+      },
+    },
+  },
+}
+          </script>
+    <title>Safe Haven Bathrooms</title>
+  </head>
+  <div class="bg-gradient-to-br from-pink-100 to-white-600 p-6  min-h-screen flex items-center justify-center px-16">
+    <div class="relative w-full max-w-lg">
+      <div class="logo">
+        <img src="https://pbs.twimg.com/media/FS-ePJdWUAM1XUc?format=png&name=medium" alt="logo">
+      </div>
+      <div class="absolute top-0 -right-4 w-72 h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div class="absolute -bottom-8 left-20 w-72 h-72 bg-yellow-600 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      <div class="absolute bg-center w-72 h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div class="m-8 relative space-y-4">
+>>>>>>> bf4c3161dac76f724582999f4dd29f5797d5112d
     <!-- Navigation to favorite bathrooms page -->
     <header>
         <a href="./favoritebathrooms.html">Here is a link to the favorite bathrooms page</a>
     </header>
     <section class="hero">
+<<<<<<< HEAD
         <div class="hero-body">
             <div class="container">
                 <h1 class="has-text-primary">Search for Bathrooms</h1>
@@ -45,6 +98,41 @@
                 </div>
             </div>
         </div>
+=======
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="has-text-primary">Search for Bathrooms</h1>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input
+                class="input form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                type="text"
+                style="width: 25%"
+                placeholder="location"
+              />
+              <span class="icon is-small is-left">
+                <i class="fa-regular fa-location-dot"></i>
+              </span>
+            </p>
+          </div>
+          <div>
+            <button class="button is-primary btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+            </svg></button>
+          </div>
+          <div>
+            <label class="checkbox">
+              <input id="Unisex" type="checkbox" />
+              Unisex
+            </label>
+            <label class="checkbox">
+              <input id="Accessible" type="checkbox" />
+              Accessible
+            </label>
+          </div>
+        </div>
+
+>>>>>>> bf4c3161dac76f724582999f4dd29f5797d5112d
     </section>
 
     <!-- Placeholder div for Google Maps - renders on page load -->
@@ -55,8 +143,22 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
+<<<<<<< HEAD
     <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI&callback=initGoogle"></script>
 </body>
 
 </html>
+=======
+    <script
+    async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4lXBd-dHyZAy38GTGB99wwHqPgpS9JuI&callback=initGoogle"
+    ></script>
+  </div>
+</div>
+</div>
+</div>
+</div>
+  </body>
+</html>
+>>>>>>> bf4c3161dac76f724582999f4dd29f5797d5112d
