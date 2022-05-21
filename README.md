@@ -22,7 +22,7 @@ SO THAT I can use bathrooms at ease
 - Javascript
 - [Refuge API](https://www.refugerestrooms.org/api/docs/)
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript/overview)
-
+- [Google Maps Geolocation API](https://developers.google.com/maps/documentation/geolocation/overview)
 
 ## Acceptance Criteria
 
@@ -49,6 +49,18 @@ THEN I can write a review to Google Maps
 Here is an example of the final page.
 <!-- TODO Update screenshot -->
 ![screenshot of finished page](./assets/images/screenshot.png)
+
+---
+
+**Disclaimer:** This application was developed for non-commercial, informational, and educational purposes only.
+
+**Terms of Service**
+
+This application utilizes information, features, and content retrieved from both Refuge Restrooms and Google Maps. By using this application, the user is agreeing to abide by Refuge Restrooms and Google Maps terms of service and privacy policies.
+
+[Google Maps Terms of Service](https://maps.google.com/help/terms_maps/)
+[Google Privacy Policy](https://www.google.com/policies/privacy/)
+
 
 ## Credits
 
