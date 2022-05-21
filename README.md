@@ -6,7 +6,7 @@ This is an app that finds gender neutral and accessible public restrooms near yo
 
 Some things that we learned while developing Loo:
 - This was our first time using the Tailwind framework, and we learned how to access Tailwind without using Node.js
-- We created a dynamic Google Maps rendering, and learned about geolocation, referencing other API data, and creating custom map icons
+- We created a dynamic Google Maps rendering, and learned about geolocation, geocoding, referencing other API data, and creating custom map icons
 - We were able to utilize a local storage array to save entire blocks of rendered data and append them to a favorites page upon reload
 
 ## User Story
@@ -23,6 +23,8 @@ SO THAT I can use bathrooms at ease
 - [Refuge API](https://www.refugerestrooms.org/api/docs/)
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript/overview)
 - [Google Maps Geolocation API](https://developers.google.com/maps/documentation/geolocation/overview)
+- [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/overview)
+- [Google Maps Geocode](https://developers.google.com/maps/documentation/geocoding/overview)
 
 ## Acceptance Criteria
 
@@ -49,6 +51,8 @@ THEN I can write a review to Google Maps
 Here is an example of the final page.
 <!-- TODO Update screenshot -->
 ![screenshot of finished page](./assets/images/screenshot.png)
+
+Here is the URL to the github page: https://safe-haven-bathrooms.github.io/App/
 
 ---
 
