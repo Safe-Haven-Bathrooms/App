@@ -16,6 +16,12 @@ AS A bathroom seeker
 I WANT to find a accessible and non-conforming bathroom
 SO THAT I can use bathrooms at ease
 ```
+### Technologies Used
+- HTML
+- [Tailwind CSS Framework](https://tailwindcss.com/)
+- Javascript
+- [Refuge API](https://www.refugerestrooms.org/api/docs/)
+- [Google Maps API](https://developers.google.com/maps/documentation/javascript/overview)
 
 
 ## Acceptance Criteria
