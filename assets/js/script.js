@@ -1,8 +1,6 @@
 var searchEl = $(".container");
 var resultsEl = $("#results");
 var bathroomsArray = [];
-var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-let labelIndex = 0;
 var myStyle = [
     {
       featureType: "administrative",
@@ -53,7 +51,7 @@ function initGoogle() {
 
     var options = {
         center: { lat: 41.8781, lng: -87.6298 },
-        zoom: 13,
+        zoom: 15,
         styles: myStyle
     };
 
