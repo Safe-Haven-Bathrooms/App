@@ -1,13 +1,63 @@
 var searchEl = $(".container");
 var resultsEl = $("#results");
 var bathroomsArray = [];
-
+var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let labelIndex = 0;
+var myStyle = [
+    {
+      featureType: "administrative",
+      elementType: "all",
+      stylers: [
+        { saturation: -20 },
+        { hue: "#FFFF8F" }
+      ]
+    },{
+      featureType: "landscape",
+      elementType: "all",
+      stylers: [
+        { hue: "#FFFF8F" },
+        { saturation: -20 }
+      ]
+    },{
+      featureType: "poi",
+      elementType: "all",
+      stylers: [
+        { hue: "#FFFF8F" },
+        { saturation: -20 }
+      ]
+    },{
+      featureType: "road",
+      elementType: "all",
+      stylers: [
+        { hue: "#FFFF8F" },
+        { saturation: -20 }
+      ]
+    },{
+      featureType: "transit",
+      elementType: "all",
+      stylers: [
+        { hue: "#FFFF8F" },
+        { saturation: -20 }
+      ]
+    },{
+      featureType: "water",
+      elementType: "all",
+      stylers: [
+        { hue: "#FFFF8F" },
+        { saturation: -20 }
+      ]
+    }
+  ]
 
 function initGoogle() {
+
     var options = {
         center: { lat: 41.8781, lng: -87.6298 },
         zoom: 13,
+        styles: myStyle
     };
+
+
 
     if (navigator.geolocation) {
         console.log("geolocation is here!");
@@ -32,6 +82,7 @@ function positionCoord(position) {
     map = new google.maps.Map(document.getElementById("flush"), {
         zoom: 15,
         center: coords,
+        styles: myStyle
     });
 
     //  map marker
