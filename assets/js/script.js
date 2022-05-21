@@ -194,22 +194,29 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                 //Results DIV with ID
                 var resultsDiv = jQuery("<div>", {
                     id: bathroomInfo.id,
-                    class: "card",
+                    class: "card pr-5 pl-5 pt-3 pb-3 mt-4 bg-white opacity-100 rounded-lg flex flex-col justify-center",
                 }).appendTo("#results");
 
-                resultsDiv.append(`<button type="button" class="button">Favorite</button>
+                resultsDiv.append(`<button type="button" class="button btn -mt-7 -mb-5 ml-80 w-1/4 p-2 inline-block px-6 py-2.5 bg-pink-100 text-pink-500 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-pink-500  hover:shadow-lg focus:bg-pink-100  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-pink-100  active:shadow-lg transition duration-150 ease-in-out flex items-center" >
+                \xa0\xa0\xa0\xa0<i class="fa fa-heart" aria-hidden="false" style="pointer-events:none" class="justify-center"></i>\xa0\xa0Fav
+                </button>
+                
             `);
 
                 resultsDiv.append(`
-            <div class="bathroomDiv" id="${[i]}">
-                <h3>${bathroomInfo.name}</h3>
-                <li>Distance: ${distanceValue} miles from you</li>
-                <li>Accessible: ${accessibleValue}</li>
-                <li>Unisex: ${unisexValue}</li>
-                <li>Changing Table: ${changingTableValue}</li>
-                <li>Address: ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state
-                    }</li>
+
+            <div class="bathroomDiv border-l-8 border-pink-100 pl-5 mt-3" id="${[i]}">
+                <h3 class="text-2xl" style="text-transform:uppercase">${bathroomInfo.name}</h3>
+                <ul id="list${[i]}">
+                    <li><strong>Distance:</strong> ${distanceValue} miles from you</li>
+                    <li><strong>Accessible:</strong> ${accessibleValue}</li>
+                    <li><strong>Unisex:</strong> ${unisexValue}</li>
+                    <li><strong>Changing Table:</strong> ${changingTableValue}</li>
+                    <li><strong>Address:</strong> ${bathroomInfo.street} ${bathroomInfo.city}, ${bathroomInfo.state
+                        }</li>
+                <ul>
             </div>
+
         `);
 
                 if (
@@ -217,13 +224,13 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                     bathroomInfo.directions === ""
                 ) {
                 } else {
-                    $(`#${[i]}`).append(
-                        `<li>Directions: ${bathroomInfo.directions} </li>`
+                    $(`#list${[i]}`).append(
+                        `<li><strong>Directions:</strong> ${bathroomInfo.directions} </li>`
                     );
                 }
                 if (bathroomInfo.comment === null || bathroomInfo.comment === "") {
                 } else {
-                    $(`#${[i]}`).append(`<li>Comment: ${bathroomInfo.comment} </li>`);
+                    $(`#list${[i]}`).append(`<li><strong>Comment:</strong> ${bathroomInfo.comment} </li>`);
                 }
             }
 
