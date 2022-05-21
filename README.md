@@ -50,7 +50,7 @@ THEN I can write a review to Google Maps
 
 Here is an example of the final page.
 <!-- TODO Update screenshot -->
-![screenshot of finished page](./assets/images/screenshot.png)
+![LOO_Screenshot](https://user-images.githubusercontent.com/101844445/169635269-b9b71a56-bd3f-4b5e-9761-ea73b2bd45b8.gif)
 
 Here is the URL to the github page: https://safe-haven-bathrooms.github.io/App/
 
