@@ -1,6 +1,8 @@
 var searchEl = $(".container");
 var resultsEl = $("#results");
 var bathroomsArray = [];
+var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let labelIndex = 0;
 
 function initGoogle() {
     var options = {
@@ -126,26 +128,37 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                     lng: JSON.parse(data[i].longitude),
                 };
 
-            
-                // // Bathroom Marker
-                var bathroomMarker = new google.maps.Marker({
+
+                // Bathroom Marker
+                let bathroomMarker = new google.maps.Marker({
                     position: {
                         lat: bathroomInfo.lat,
                         lng: bathroomInfo.lng,
                     },
-                    // label: labels[labelIndex++ % labels.length],
+                    label: labels[labelIndex++ % labels.length],
                     map: map,
                     title: data[i].name
                 });
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: data[i].name
+                //Adds the Infowindow to the Bathroom Markers
+                let infowindow = new google.maps.InfoWindow({
+                    content: `
+            <h3>${bathroomInfo.name}</h3>
+            <p>${bathroomInfo.street} <br>
+            ${bathroomInfo.city}, ${bathroomInfo.state} <br>
+            <b>Distance:</b> ${Math.round(bathroomInfo.distance * 100) / 100} miles <br>
+            ${bathroomInfo.changingTable ? 'has changing table<br>' : ''}
+            ${bathroomInfo.accessible ? 'It is accessible<br>' : ''}
+            ${bathroomInfo.unisex ? 'Unisex<br>' : ''}</p>`,
+                    maxWidth: 200,
+
                 });
 
+                // Adds listener to markers
                 google.maps.event.addListener(bathroomMarker, 'click', function () {
                     infowindow.open(map, bathroomMarker);
+                    console.log('click')
                 });
-            
 
 
                 //Names changing table result rendered to page
@@ -219,7 +232,7 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
 
             //     var bathroomMarker = new google.maps.Marker({
             //         position: {
-                        
+
             //             lat: bathroomInfo.lat,
             //             lng: bathroomInfo.lng,
             //         },
@@ -249,10 +262,10 @@ function getLocalStorage() {
     if (storedBathrooms !== null) {
         //If the locally stored array isn't empty, update the existing array to those contents
         bathroomsArray = storedBathrooms;
-        console.log(
-            "The locally stored bathrooms array isn't empty (value below):"
-        );
-        console.log(bathroomsArray);
+        // console.log(
+        //     "The locally stored bathrooms array isn't empty (value below):"
+        // );
+        // console.log(bathroomsArray);
     } else {
         console.log("The locally stored bathrooms array is empty.");
     }
