@@ -7,7 +7,7 @@ let labelIndex = 0;
 function initGoogle() {
     var options = {
         center: { lat: 41.8781, lng: -87.6298 },
-        zoom: 10,
+        zoom: 13,
     };
 
     if (navigator.geolocation) {
@@ -40,6 +40,7 @@ function positionCoord(position) {
         position: coords,
         map: map,
         title: "You Are Here",
+        icon: "./assets/images/tp copy.png"
     });
 }
 
@@ -137,7 +138,8 @@ function appendLocationDiv(googleLat, googleLon, unisex, accessible) {
                     },
                     label: labels[labelIndex++ % labels.length],
                     map: map,
-                    title: data[i].name
+                    title: data[i].name,
+                    icon: "./assets/images/tp copy.png"
                 });
 
                 //Adds the Infowindow to the Bathroom Markers
