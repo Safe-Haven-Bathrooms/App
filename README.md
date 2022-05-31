@@ -51,6 +51,10 @@ THEN I can write a review to Google Maps
 Here is an example of the final page.
 ![LOO_Screenshot](https://user-images.githubusercontent.com/101844445/169635269-b9b71a56-bd3f-4b5e-9761-ea73b2bd45b8.gif)
 
+![loo_screenshot2](./assets/images/loo_screenshot2.png)
+
+![loo_screenshot3](./assets/images/loo_screenshot3.png)
+
 ---
 
 **Disclaimer:** This application was developed for non-commercial, informational, and educational purposes only.
@@ -65,4 +69,8 @@ This application utilizes information, features, and content retrieved from both
 
 ## Credits
 
-This app is brought to you by: Givens, Alex, Kaluki, & Elia
+This app is brought to you by: Givens, Alex, Kaluki, & Elia.
+
+## Contact Us
+
+Questions? Reach out! One of our teammates, Alex, will be happy to assist. alexandraolsavsky@gmail.com
